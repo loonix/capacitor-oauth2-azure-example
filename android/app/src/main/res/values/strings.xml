@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">anchortestapp</string>
+    <string name="title_activity_main">anchortestapp</string>
+    <string name="package_name">com.cads.smartanchortest</string>
+    <string name="custom_url_scheme">com.cads.smartanchortest</string>
+</resources>

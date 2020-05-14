@@ -1,0 +1,7 @@
+{
+  "name": "capacitor-oauth-azure-example",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
