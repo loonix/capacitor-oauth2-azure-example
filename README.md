@@ -2,7 +2,9 @@
 
 ### Summary
 This repo was made for getting feedback on the issue https://github.com/moberwasserlechner/capacitor-oauth2/issues/96
+
 The current example uses the plugin: https://github.com/moberwasserlechner/capacitor-oauth2
+
 Please follow the instructions on the plugin page if you want another type of configuration.
 
 ### What do you need to change?
