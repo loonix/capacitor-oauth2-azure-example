@@ -51,3 +51,7 @@ public class MainActivity extends BridgeActivity {
   }
 }
 ```
+
+#### Add `capacitor:\\localhost` as CORS exeption via CLI
+az webapp cors add --allowed-origins capacitor://localhost --name testapistage --resource-group testWeb. 
+Although for some reason capacitor://localhost is only shown as allowed in the CLI list, not in the portal.
