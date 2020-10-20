@@ -24,9 +24,6 @@ update with your settings
 
 ### Issues you might have
 
-
-
-
 #### Redirect uri provided in the request is not registered for the client id
 This might be related with any typo on the appId on the azure portal or `redirectUrl` in the `home.page.ts`
 
@@ -53,5 +50,22 @@ public class MainActivity extends BridgeActivity {
 ```
 
 #### Add `capacitor:\\localhost` as CORS exeption via CLI
-az webapp cors add --allowed-origins capacitor://localhost --name testapistage --resource-group testWeb. 
-Although for some reason capacitor://localhost is only shown as allowed in the CLI list, not in the portal.
+`az webapp cors add --allowed-origins capacitor://localhost --name testapistage --resource-group testWeb`. 
+Although for some reason `capacitor://localhost` is only shown as allowed in the CLI list, not in the portal.
+
+#### Code to logout with capacitor oauth2 azure (IOS issue workaround)
+
+URL:
+```
+const urlLogout = https://${environment.tenantName}.b2clogin.com/tfp/${environment.tenantName}.onmicrosoft.com/${environment.signInPolicy}/oauth2/v2.0/logout?client_id=${environment.clientID}&response_type=token&redirect_uri=${environment.redirectUrl}&scope=openid%20offline_access%20https://XXXX.onmicrosoft.com/api/demo.read;
+```
+Code for logging out in IOS
+```
+ // Workaround to get IOS logout
+    if(Capacitor.platform === 'ios'){
+      await Browser.open({ url: urlLogout }).finally(() => setTimeout(() => Browser.close(), 4000));
+      this.onLogoutClick();
+      return;
+    }
+```
+
