@@ -55,17 +55,32 @@ Although for some reason `capacitor://localhost` is only shown as allowed in the
 
 #### Code to logout with capacitor oauth2 azure (IOS issue workaround)
 
-URL:
-```
+```javascript
+// Imports
+import { OAuth2Client } from '@byteowls/capacitor-oauth2';
+import { Plugins, registerWebPlugin, Capacitor } from '@capacitor/core';
+const { Browser } = Plugins;
+
+// URL- please change this
 const urlLogout = https://${environment.tenantName}.b2clogin.com/tfp/${environment.tenantName}.onmicrosoft.com/${environment.signInPolicy}/oauth2/v2.0/logout?client_id=${environment.clientID}&response_type=token&redirect_uri=${environment.redirectUrl}&scope=openid%20offline_access%20https://XXXX.onmicrosoft.com/api/demo.read;
-```
-Code for logging out in IOS
-```
- // Workaround to get IOS logout
+
+// In case WEB/Local
+    if (Capacitor.platform === 'web') {
+      await Browser.open({ url: urlLogout }).finally(() => setTimeout(() => Browser.close(), 1000));
+      this.onLogoutClick();
+      return;
+    }
+    
+// Workaround to get IOS logout
     if(Capacitor.platform === 'ios'){
       await Browser.open({ url: urlLogout }).finally(() => setTimeout(() => Browser.close(), 4000));
       this.onLogoutClick();
       return;
     }
+    
+// In case IOS/Android
+    const browser = await Browser.open({ url: urlLogout });
+    Browser.close();
+    this.onLogoutClick();
+  }
 ```
-
